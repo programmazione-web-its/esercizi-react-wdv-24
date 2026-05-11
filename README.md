@@ -34,7 +34,7 @@ const pizzas = [
 
 - Renderizza la lista con `map()` e la prop `key` sull'elemento radice.
 - Per ogni pizza mostra nome, lista ingredienti e prezzo.
-- Se `soldOut === true` non mostrare il prezzo.
+- Se `soldOut === true` applica `className="sold-out"` al wrapper e non mostrare il prezzo.
 - Il componente è esportato come default e importato in `App`.
 
 ---
