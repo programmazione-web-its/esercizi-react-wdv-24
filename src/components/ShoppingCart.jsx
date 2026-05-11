@@ -13,7 +13,27 @@ export default function ShoppingCart() {
   // 🚨 Come faccio a gestire i refs per un array di elementi???
   const inputRef = useRef(null)
 
-  const cartTotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+  // const inputRefs = useRef(new Map())
+  //    // Nel JSX, per ogni elemento:
+  // <input
+  //   ref={(el) => {
+  //     if (el) inputRefs.current.set(item.id, el)
+  //     else inputRefs.current.delete(item.id)
+  //   }}
+  //   type='number'
+  // />
+
+  // // Per leggere il valore di un elemento specifico:
+  // function updateQuantity(id) {
+  //   const input = inputRefs.current.get(id)
+  //   const qnty = input.value
+  //   // ...
+  // }
+
+  const cartTotal = items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
+  )
 
   function addItem(item) {
     setItems((prevItems) => [...prevItems, item])
@@ -39,11 +59,21 @@ export default function ShoppingCart() {
         <div className='cart-item' key={item.id}>
           <span className='cart-item__name'>{item.name}</span>
           <div className='quantity-control'>
-            <input ref={inputRef} name='id' type='number' defaultValue={item.quantity} />
+            <input
+              ref={inputRef}
+              name='id'
+              type='number'
+              defaultValue={item.quantity}
+            />
             <button onClick={() => updateQuantity(item.id)}>Aggiorna</button>
           </div>
-          <span className='cart-item__price'>€ {(item.price * item.quantity).toFixed(2)}</span>
-          <button className='cart-remove-btn' onClick={() => removeItem(item.id)}>
+          <span className='cart-item__price'>
+            € {(item.price * item.quantity).toFixed(2)}
+          </span>
+          <button
+            className='cart-remove-btn'
+            onClick={() => removeItem(item.id)}
+          >
             🗑️
           </button>
         </div>
